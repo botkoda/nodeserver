@@ -5,7 +5,14 @@ async function get(req, res, next) {
     const context = {};
  
     context.id = parseInt(req.params.id, 10);
- 
+ // *** line that parses req.params.id is here ***
+    context.skip = parseInt(req.query.skip, 10);
+    context.limit = parseInt(req.query.limit, 10);
+    // *** line that parses req.query.limit is here ***
+    context.sort = req.query.sort;
+     // *** line that parses req.query.sort is here ***
+     context.name = req.query.name;
+     context.color = req.query.color;
     const rows = await cars.find(context);
  
     if (req.params.id) {
